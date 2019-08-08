@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="./Resources/css/bootstrap.min.css">
+
+	<style>
+		table td {
+			font-family: consolas;
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+	<h2>Annotation History Review Report</h2>
+	<h4>Generated <%= org.joda.time.DateTime.new.toString(@date_format) %></h4>
+	<table class="table table-striped table-hover table-sm table-bordered">
+		<thead>
+			<tr>
+				<th scope="col">Event Date</th>
+				<th scope="col">Operation</th>
+				<th scope="col">Affected Items</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% events.each_with_index do |event,event_index| %>
+				<% @progress_dialog.setMainStatus("Processing event #{event_index+1}: #{get_operation_description(event)}") %>
+				<% @progress_dialog.logMessage("(#{event_index+1}) #{event.getStartDate.withZone(@time_zone).toString(@date_format)} - #{get_operation_description(event)}") %>
+				<% rel_path = generate_event_details(event) %>
+				<tr>
+					<td><a href="<%= rel_path %>"><%= event.getStartDate.withZone(@time_zone).toString(@date_format) %></a></td>
+					<td><a href="<%= rel_path %>"><%= get_operation_description(event) %></a></td>
+					<td><a href="<%= rel_path %>"><%= event.getAffectedItems.size %></a></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+	<script src="./Resources/js/bootstrap.min.js"></script>
+</div>
+</body>
+</html>

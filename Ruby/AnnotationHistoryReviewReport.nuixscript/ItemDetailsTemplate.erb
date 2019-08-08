@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="../../../.././Resources/css/bootstrap.min.css">
+
+	<style>
+		table td {
+			font-family: consolas;
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+	<h2>Item Info</h2>
+	<table class="table table-striped table-hover table-sm table-bordered">
+		<thead>
+			<tr>
+				<th scope="col">Name</th>
+				<th scope="col">Value</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr><td><b>Item GUID</b></td><td><%= item.getGuid %></td></tr>
+			<tr><td><b>Item Name</b></td><td><%= item.getLocalisedName %></td></tr>
+			<tr><td><b>Item Kind</b></td><td><%= item.getType.getKind.getName %></td></tr>
+			<tr><td><b>Mime Type</b></td><td><%= item.getType.getName %></td></tr>
+			<tr><td><b>Current Tags</b></td><td><%= item.getTags.join("<br>") %></td></tr>
+		</tbody>
+	</table>
+
+	<h2>Events</h2>
+	<table class="table table-striped table-hover table-sm table-bordered">
+		<thead>
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">Description</th>
+			</tr>
+		</thead>
+		<tbody>
+		<% item.getHistory.each do |event| %>
+			<% details = event.getDetails %>
+			<% next unless (event.getTypeString == "annotation" || event.getTypeString == "export") %>
+			<% event_path = "../../../../"+event_detail_relative_path(event) %>
+				<tr>
+				<td><%= event.getStartDate.withZone(@time_zone).toString(@date_format) %></td>
+				<td><%= get_operation_description(event) %></td>
+				</tr>
+		<% end %>
+		</tbody>
+	</table>
+
+	<script src="./Resources/js/bootstrap.min.js"></script>
+</div>
+</body>
+</html>
