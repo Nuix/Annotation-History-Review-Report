@@ -45,11 +45,10 @@
 		<% item.getHistory.each do |event| %>
 			<% details = event.getDetails %>
 			<% next unless (event.getTypeString == "annotation" || event.getTypeString == "export") %>
-			<% event_path = "../../../../"+event_detail_relative_path(event) %>
-				<tr>
-				<td><%= event.getStartDate.withZone(@time_zone).toString(@date_format) %></td>
-				<td><%= get_operation_description(event) %></td>
-				</tr>
+			<tr>
+			<td><%= event.getStartDate.withZone(@time_zone).toString(@date_format) %></td>
+			<td><%= get_operation_description(event) %></td>
+			</tr>
 		<% end %>
 		</tbody>
 	</table>
