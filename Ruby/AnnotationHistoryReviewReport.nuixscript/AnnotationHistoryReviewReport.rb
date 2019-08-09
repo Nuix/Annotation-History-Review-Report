@@ -35,6 +35,7 @@ dialog = TabbedCustomDialog.new("Annotation History Review Report")
 main_tab = dialog.addTab("main_tab","Main")
 main_tab.appendDirectoryChooser("report_directory","Report Directory","C:\\")
 main_tab.setText("report_directory","C:\\AnnotationHistoryReports\\#{time_stamp}")
+main_tab.appendCheckBox("open_on_completion","Open Report Directory on Completion",true)
 
 dialog.validateBeforeClosing do |values|
 	if values["report_directory"].strip.empty?
@@ -56,5 +57,9 @@ if dialog.getDialogResult == true
 		reporter.generate_report($current_case,pd)
 
 		pd.setCompleted
+
+		if values["open_on_completion"]
+			java.awt.Desktop.getDesktop.open(java.io.File.new(values["report_directory"]));
+		end
 	end
 end
