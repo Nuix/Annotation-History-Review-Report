@@ -33,7 +33,7 @@
 			<% affected_items = event.getAffectedItems %>
 			<% affected_items.each_with_index do |item,item_index| %>
 				<% @progress_dialog.setMainProgress(item_index+1,affected_items.size) %>
-				<% @progress_dialog.setSubStatus("Item #{item_index+1}/#{affected_items.size}") %>
+				<% @progress_dialog.setSubStatus("Generation Item Details: #{item_index+1}/#{affected_items.size}") %>
 				<% item_detail_path = item_detail_relative_path(item) %>
 				<tr>
 					<td><a href="<%= item_detail_path %>"><%= item.getGuid %></a></td>
