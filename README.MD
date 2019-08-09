@@ -7,11 +7,24 @@ View the GitHub project [here](https://github.com/Nuix/Annotation-History-Review
 
 # Overview
 
-This script generates a report of case history events "annotation" and "export" and details regarding the items involved in those events.  The report is generated in three levels:
+This script generates a report of case history events of types "annotation" and "export". For each of these events, details regarding the items involved in those events are also reported.  The report is generated in three levels:
 
-- Event Summary: This report lists all the annotation and export events found in the case.  Each event listed has a hyper link to an Event Details report.
-- Event Details: Generated for each event.  Lists the items affected by the given event.  Each listed item has a hyper link to an Item Details report.
-- Item Details: For each item involved in an event, lists some high level details about that item and the history events that given item was involved in.
+## Event Summary
+This part of the report lists all the "annotation" and "export" type events found in the case.  Each event listed has a hyper link to an Event Details report.
+
+![image](https://user-images.githubusercontent.com/11775738/62799165-f7649100-ba94-11e9-829a-bfcbd771d13b.png)
+
+## Event Details
+
+This part of the report is generated for each event reported on the event summary page.  Lists the items affected by the given event.  Each listed item has a hyper link to an Item Details report.
+
+![image](https://user-images.githubusercontent.com/11775738/62798981-7efdd000-ba94-11e9-9d54-259163e7cc8f.png)
+
+## Item Details
+
+This part of the report is generated for each item involved in an event.  Each per item page lists some high level details about that item and the history events that the given item was involved in.
+
+![image](https://user-images.githubusercontent.com/11775738/62799199-0c412480-ba95-11e9-8bf9-ce71aa95711d.png)
 
 # Getting Started
 
