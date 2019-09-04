@@ -1,3 +1,4 @@
+<%# coding: UTF-8 %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -33,7 +34,7 @@
 				<% rel_path = generate_event_details(event) %>
 				<tr>
 					<td><a href="<%= rel_path %>"><%= event.getStartDate.withZone(@time_zone).toString(@date_format) %></a></td>
-					<td><a href="<%= rel_path %>"><%= get_operation_description(event) %></a></td>
+					<td><a href="<%= rel_path %>"><%= html_escape(get_operation_description(event)) %></a></td>
 					<td><a href="<%= rel_path %>"><%= event.getAffectedItems.size %></a></td>
 				</tr>
 			<% end %>

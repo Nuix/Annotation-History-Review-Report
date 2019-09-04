@@ -1,3 +1,4 @@
+<%# coding: UTF-8 %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -26,10 +27,10 @@
 		</thead>
 		<tbody>
 			<tr><td><b>Item GUID</b></td><td><%= item.getGuid %></td></tr>
-			<tr><td><b>Item Name</b></td><td><%= item.getLocalisedName %></td></tr>
+			<tr><td><b>Item Name</b></td><td><%= html_escape(item.getLocalisedName) %></td></tr>
 			<tr><td><b>Item Kind</b></td><td><%= item.getType.getKind.getName %></td></tr>
-			<tr><td><b>Mime Type</b></td><td><%= item.getType.getName %></td></tr>
-			<tr><td><b>Current Tags</b></td><td><%= item.getTags.join("<br>") %></td></tr>
+			<tr><td><b>Mime Type</b></td><td><%= html_escape(item.getType.getName) %></td></tr>
+			<tr><td><b>Current Tags</b></td><td><%= item.getTags.map{|t|html_escape(t)}.join("<br>") %></td></tr>
 		</tbody>
 	</table>
 
@@ -43,11 +44,11 @@
 		</thead>
 		<tbody>
 		<% item.getHistory.each do |event| %>
-			<% details = event.getDetails %>
+			<% #details = event.getDetails %>
 			<% next unless (event.getTypeString == "annotation" || event.getTypeString == "export") %>
 			<tr>
 			<td><%= event.getStartDate.withZone(@time_zone).toString(@date_format) %></td>
-			<td><%= get_operation_description(event) %></td>
+			<td><%= html_escape(get_operation_description(event)) %></td>
 			</tr>
 		<% end %>
 		</tbody>

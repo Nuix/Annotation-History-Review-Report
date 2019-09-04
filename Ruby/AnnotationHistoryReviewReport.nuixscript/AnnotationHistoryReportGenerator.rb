@@ -112,6 +112,13 @@ class AnnotationHistoryReportGenerator
 					return "Production Set"
 				end
 			end
+
+			if details.has_key?("custodian")
+				assigned = details["assigned"] == true
+				return "Custodian '#{details["custodian"]}' #{assigned ? "Assigned" : "Unassigned"}"
+			end
+
+			return event.getTypeString.capitalize
 		end
 	end
 
